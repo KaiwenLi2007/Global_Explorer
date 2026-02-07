@@ -1,0 +1,32 @@
+Global Explorer Prompt History
+
+
+I want to build a 'Global Explorer Dashboard' application using python. It should include a clean, centered layout with a 'Search' button, and a display card.
+
+Make it look modern with a semi-transparent background for the card so it can sit over an image later.
+
+Write a Python function get_weather(city, api_key) that uses the requests library to call the OpenWeatherMap API. The function should return a weather description of the city.
+
+Write another function get_image(city, api_key) that uses the requests library to call the Unsplash API. The function should return an image of the city.
+
+Check for me if the APIs are functioning by matching the API keys with the API documentation.
+
+Instead of leaving the right dashboard empty, integrate a new feature for displaying local tourism sites using the Wikipedia API.
+
+Add a random location generator where the location will be generated through a fix list.
+
+Change the title to Where do you want to travel today.
+
+Implement the Random button again. 
+
+The location tourism sites functions does not seems to work.
+
+Write test_wiki.py to test the wikipedia API. 
+
+Ask wikipedia to return some tourism sites instead of some info that we do not need to tell if I want to go there or not.
+
+The search bar should be a bit larger.
+
+The style of the tourism sites should be at better font.
+
+In readme file, add what are the two API we used but do not include the API key itself.
