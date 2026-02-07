@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Dynamic Background Layer -->
+    <div class="background-layer" id="bg-layer"></div>
+    <div class="overlay"></div>
+
+    <div class="app-container">
+        <!-- Header / Navigation -->
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span>Global Explorer</span>
+            </div>
+            <div class="actions">
+                <button id="settings-toggle" class="icon-btn" title="API Settings">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hero Search Section -->
+            <section class="hero">
+                <h1 class="fade-in">Where do you want to travel today?</h1>
+                <p class="subtitle fade-in delay-1">Real-time weather and stunning imagery at your fingertips.</p>
+
+                <div class="search-wrapper fade-in delay-2">
+                    <div class="search-bar">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="city-input" placeholder="Search for a city (e.g., Tokyo, Paris)..."
+                            autocomplete="off">
+                        <button id="search-btn">Explore</button>
+                        <button id="random-btn" title="Surprise Me!"><i class="fa-solid fa-dice"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-grid hidden">
+                <!-- Weather Card -->
+                <div class="card weather-card glass-panel">
+                    <div class="card-header">
+                        <div>
+                            <h2 id="result-city">City Name</h2>
+                            <span id="local-time" class="badge">--:--</span>
+                        </div>
+                        <div id="weather-icon-container">
+                            <img id="weather-icon" src="" alt="" class="weather-icon">
+                        </div>
+                    </div>
+
+                    <div class="weather-main">
+                        <span id="temperature" class="temp">--</span>
+                        <span class="unit">°C</span>
+                    </div>
+                    <p id="weather-desc" class="desc">Condition</p>
+
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span id="humidity">--%</span>
+                            <span class="label">Humidity</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fa-solid fa-wind"></i>
+                            <span id="wind-speed">-- m/s</span>
+                            <span class="label">Wind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Metadata Card -->
+                <div class="card image-card glass-panel">
+                    <!-- Famous Sites -->
+                    <div class="glass-card" id="tourism-card">
+                        <h3>Famous Sites Near By</h3>
+                        <ul id="tourism-list" class="site-list">
+                            <!-- Javascript will populate this -->
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                    <a href="#" id="view-orig" target="_blank" class="btn-secondary">
+                        View Original <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <p>Exploring...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-msg" class="error-banner hidden">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="error-text">Something went wrong.</span>
+                <button id="close-error"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </main>
+
+        <!-- API Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h3>API Configuration</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="info-text">Enter your personal API keys to override the server defaults. Keys are stored
+                        locally in your browser.</p>
+
+                    <div class="input-group">
+                        <label for="owm-key">OpenWeatherMap API Key</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-cloud"></i>
+                            <input type="password" id="owm-key" placeholder="Enter OWM Key">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="unsplash-key">Unsplash Access Key</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-camera"></i>
+                            <input type="password" id="unsplash-key" placeholder="Enter Unsplash Key">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-keys" class="btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Global Explorer. Built with Flask.</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
